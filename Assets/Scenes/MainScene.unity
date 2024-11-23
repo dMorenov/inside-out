@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 51104955}
   - component: {fileID: 51104954}
   - component: {fileID: 51104953}
-  - component: {fileID: 51104952}
   m_Layer: 0
   m_Name: Wall (3)
   m_TagString: Untagged
@@ -154,20 +153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1307429974}
   m_LocalEulerAnglesHint: {x: 0, y: -89.986, z: 0}
---- !u!114 &51104952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51104950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!65 &51104953
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -690,7 +675,6 @@ GameObject:
   - component: {fileID: 234287683}
   - component: {fileID: 234287682}
   - component: {fileID: 234287681}
-  - component: {fileID: 234287680}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Untagged
@@ -713,20 +697,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1307429974}
   m_LocalEulerAnglesHint: {x: 0, y: -89.986, z: 0}
---- !u!114 &234287680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234287678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!65 &234287681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1121,7 +1091,6 @@ GameObject:
   - component: {fileID: 491890934}
   - component: {fileID: 491890933}
   - component: {fileID: 491890932}
-  - component: {fileID: 491890931}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -1144,20 +1113,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1307429974}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &491890931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491890929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!65 &491890932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1698,7 +1653,6 @@ GameObject:
   - component: {fileID: 782826427}
   - component: {fileID: 782826426}
   - component: {fileID: 782826425}
-  - component: {fileID: 782826424}
   m_Layer: 0
   m_Name: Wall (5)
   m_TagString: Untagged
@@ -1721,20 +1675,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1307429974}
   m_LocalEulerAnglesHint: {x: 0, y: 0.014, z: 0}
---- !u!114 &782826424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782826422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!65 &782826425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3861,9 +3801,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1722030811216759960, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2127689280980845768, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3967500876761113773, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
       propertyPath: m_Name
       value: Mirror
+      objectReference: {fileID: 0}
+    - target: {fileID: 5445378096920719093, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107393095645447771, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6503091714749483230, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7040681438345602777, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130963547172353862, guid: 0b1238cfcd6919c4ba28fdbb56cb7594, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4361,7 +4329,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2018511783
 MonoBehaviour:
@@ -4383,7 +4351,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: eac814f8e7e3d2f4b98cdd821a664c5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4776,7 +4744,6 @@ GameObject:
   - component: {fileID: 2138575862}
   - component: {fileID: 2138575861}
   - component: {fileID: 2138575860}
-  - component: {fileID: 2138575859}
   m_Layer: 0
   m_Name: Wall (4)
   m_TagString: Untagged
@@ -4799,20 +4766,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1307429974}
   m_LocalEulerAnglesHint: {x: 0, y: 0.014, z: 0}
---- !u!114 &2138575859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138575857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!65 &2138575860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4983,8 +4936,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 5
-  normalCursorTexture: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  interactingCursorTexture: {fileID: 0}
+  normalCursorTexture: {fileID: 21300000, guid: eac814f8e7e3d2f4b98cdd821a664c5a, type: 3}
+  interactingCursorTexture: {fileID: 21300000, guid: c295e32db5ea80c48b8e21c56c69d95c, type: 3}
+  onClickButtonCursorTexture: {fileID: 21300000, guid: b90b87b28e30e5d4cbc4b20dc733075e, type: 3}
+  idleCursors:
+  - {fileID: 21300000, guid: eac814f8e7e3d2f4b98cdd821a664c5a, type: 3}
+  - {fileID: 21300000, guid: b90b87b28e30e5d4cbc4b20dc733075e, type: 3}
+  intCursors:
+  - {fileID: 21300000, guid: d46444553aed6d645bb5d4736e8f38d0, type: 3}
+  - {fileID: 21300000, guid: c295e32db5ea80c48b8e21c56c69d95c, type: 3}
   cursorImage: {fileID: 2018511783}
 --- !u!23 &450465719643264845
 MeshRenderer:
@@ -5223,7 +5183,6 @@ GameObject:
   - component: {fileID: 1239083847670434095}
   - component: {fileID: 450465719643264845}
   - component: {fileID: 7911523253152297279}
-  - component: {fileID: 7911523253152297280}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -5499,20 +5458,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7911523253152297280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3613733443744169119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 723e9cc030b394b49b62759f0635b6c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsFakeObject: 0
-  AlreadyInteracted: 0
 --- !u!4 &8202779882135190079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6993726487310651323, guid: 7322f356bbd92e9438ece8d4a4368632, type: 3}

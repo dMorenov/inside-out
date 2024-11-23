@@ -13,7 +13,6 @@ public class InteractableObject : MonoBehaviour, IInteractable
     public bool AlreadyInteracted = false;
     
     
-    
     public InteractionResult Interact()
     {
         if (AlreadyInteracted) return InteractionResult.None;
@@ -48,10 +47,16 @@ public class InteractableObject : MonoBehaviour, IInteractable
             transform.localScale = new Vector3(transform.localScale.x * scaleRand, transform.localScale.y, transform.localScale.z * scaleRand);
         }
     }
+
+    public bool IsAlreadyInteracted()
+    {
+        return AlreadyInteracted;
+    }
 }
 
 public interface IInteractable
 {
     InteractionResult Interact();
     void SetAsFakeObject();
+    bool IsAlreadyInteracted();
 }

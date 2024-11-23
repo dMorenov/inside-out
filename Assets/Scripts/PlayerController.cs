@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,14 @@ public class PlayerController : MonoBehaviour
     public static event Action OnWinCollider;
     
     [SerializeField] private float rayDistance = 5f;
-    [SerializeField] private Sprite normalCursorTexture;
-    [SerializeField] private Sprite interactingCursorTexture;
+    [SerializeField] private Sprite[] idleCursors;
+    [SerializeField] private Sprite[] intCursors;
     [SerializeField] private Image cursorImage;
     
     private IInteractable _currentInteractable;
+    private Coroutine _co;
+    
+    private bool _cursorIsAnimating = false;
     
     private void Update()
     {
@@ -25,12 +29,32 @@ public class PlayerController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0))
         {
+            if (_co != null)
+            {
+                StopCoroutine(_co);
+                _co = null;
+            }
+            _co = StartCoroutine(ChangeCursorDelayed());
+            
             if (_currentInteractable != null)
             {
                 var result = _currentInteractable.Interact();
                 OnInteractionResult?.Invoke(result);
             }
         }
+    }
+
+    private IEnumerator ChangeCursorDelayed()
+    {
+        var interactable = _currentInteractable != null && !_currentInteractable.IsAlreadyInteracted();
+        var spriteArray = interactable ? intCursors : idleCursors;
+        
+        cursorImage.sprite = spriteArray[1];
+
+        _cursorIsAnimating = true;
+        yield return new WaitForSeconds(0.2f);
+
+        ChangeCursor();
     }
 
     private IInteractable GetInteractable()
@@ -47,13 +71,14 @@ public class PlayerController : MonoBehaviour
 
     private void ChangeCursor()
     {
-        if (_currentInteractable == null)
+        if (_currentInteractable != null && !_currentInteractable.IsAlreadyInteracted())
         {
-            cursorImage.sprite = normalCursorTexture;
+            cursorImage.sprite = intCursors[0];
         }
         else
         {
-            cursorImage.sprite = interactingCursorTexture;
+            cursorImage.sprite = idleCursors[0];
+
         }
     }
     
