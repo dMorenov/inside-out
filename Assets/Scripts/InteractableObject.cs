@@ -33,14 +33,19 @@ public class InteractableObject : MonoBehaviour, IInteractable
     {
         IsFakeObject = true;
 
-        var rand = Random.Range(0, 100);
+        var rand = Random.Range(0, 150);
         if (rand < 50)
         {
             transform.Rotate(Vector3.up, 45f);
         }
+        else if (rand < 100)
+        {
+            transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
+        }
         else
         {
-            transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
+            var scaleRand = Random.Range(0.7f, 1.2f);
+            transform.localScale = new Vector3(transform.localScale.x * scaleRand, transform.localScale.y, transform.localScale.z * scaleRand);
         }
     }
 }

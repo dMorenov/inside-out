@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,17 +12,22 @@ public class GameManager : MonoBehaviour
     public GameObject OriginalInteractableParent;
     public GameObject MirrorInteractableParent;
 
-    public GameObject WinPopup;
-    public GameObject LosePopup;
+    public Popup WinPopup;
+    public Popup LosePopup;
+    public Popup MenuPopup;
 
     public GameObject[] DisableOnWin;
+    public GameObject[] EnableOnWin;
     
     private InteractableObject[] _originalInteractables;
     private InteractableObject[] _mirrorInteractables;
     
+    private bool _allSolved = false;
+    
     public void Awake()
     {
         PlayerController.OnInteractionResult += HandleInteractionResult;
+        PlayerController.OnWinCollider += ShowWinPopup;
         DoorManager.Reset();
         
         _originalInteractables = OriginalInteractableParent.GetComponentsInChildren<InteractableObject>();
@@ -43,11 +49,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Reset()
+    {
+        
+    }
+
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            MenuPopup.Set(true);
         }
     }
 
@@ -73,9 +84,8 @@ public class GameManager : MonoBehaviour
         CurrentSuccessActionsCount++;
         if (CurrentSuccessActionsCount >= ActionsForWin)
         {
-            WinGame();
+            OnAllItemsSolved();
         }
-        
     }
     
     private void OnFailure()
@@ -85,11 +95,11 @@ public class GameManager : MonoBehaviour
         if (CurrentFailedActionsCount >= MaxFailedActionsCount)
         {
             Debug.Log("Game Over");
-            LosePopup.SetActive(true);
+            //LosePopup.SetActive(true);
         }
     }
 
-    private void WinGame()
+    private void OnAllItemsSolved()
     {
         Debug.Log("You win!");
 
@@ -98,14 +108,38 @@ public class GameManager : MonoBehaviour
             interactable.AlreadyInteracted = true;
         }
         
+        foreach (var interactable in _mirrorInteractables)
+        {
+            interactable.AlreadyInteracted = true;   
+        }
+        
+        foreach(var go in EnableOnWin)
+        {
+            go.SetActive(true);
+        }
+    }
+
+    public void ShowWinPopup()
+    {
         foreach (var go in DisableOnWin)
         {
             go.SetActive(false);
         }
         
-        WinPopup.SetActive(true);
+        WinPopup.Set(true);
     }
     
+    public void ReturnToMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.OnInteractionResult -= HandleInteractionResult;
+        PlayerController.OnWinCollider -= ShowWinPopup;
+    }
+
     private void ShuffleArray<T>(T[] array)
     {
         for (int i = 0; i < array.Length; i++)

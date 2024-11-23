@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public static event Action<InteractionResult> OnInteractionResult;
+    public static event Action OnWinCollider;
     
     [SerializeField] private float rayDistance = 5f;
     [SerializeField] private Sprite normalCursorTexture;
@@ -53,6 +54,14 @@ public class PlayerController : MonoBehaviour
         else
         {
             cursorImage.sprite = interactingCursorTexture;
+        }
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("WinCollider"))
+        {
+            OnWinCollider?.Invoke();
         }
     }
 }
