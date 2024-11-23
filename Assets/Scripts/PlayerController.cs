@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<InteractionResult> OnInteractionResult;
+    
     [SerializeField] private float rayDistance = 5f;
     [SerializeField] private Sprite normalCursorTexture;
     [SerializeField] private Sprite interactingCursorTexture;
@@ -23,7 +26,8 @@ public class PlayerController : MonoBehaviour
         {
             if (_currentInteractable != null)
             {
-                _currentInteractable.Interact();
+                var result = _currentInteractable.Interact();
+                OnInteractionResult?.Invoke(result);
             }
         }
     }
