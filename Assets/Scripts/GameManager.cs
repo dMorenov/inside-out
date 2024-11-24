@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,9 +19,15 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] DisableOnWin;
     public GameObject[] EnableOnWin;
+
+    public GameObject actionsPrefab;
+    public Transform actionsContainer;
+
+    private List<GameObject> _actions = new();
     
     private InteractableObject[] _originalInteractables;
     private InteractableObject[] _mirrorInteractables;
+    public InteractableObject[] _forcedInteractables;
     
     private bool _allSolved = false;
     
@@ -33,14 +40,27 @@ public class GameManager : MonoBehaviour
         _originalInteractables = OriginalInteractableParent.GetComponentsInChildren<InteractableObject>();
         _mirrorInteractables = MirrorInteractableParent.GetComponentsInChildren<InteractableObject>();
 
+        _actions.Clear();
+        for (int i = 0; i < MaxFailedActionsCount; i++)
+        {
+            var item = Instantiate(actionsPrefab, actionsContainer);
+            item.SetActive(true);
+            _actions.Add(item);
+        }
+
         foreach (var interactable in _originalInteractables)
+        {
+            Destroy(interactable);
+        }
+        
+        foreach (var interactable in _forcedInteractables)
         {
             Destroy(interactable);
         }
         
         ShuffleArray(_mirrorInteractables);
         
-        var intCount = 0;
+        var intCount = 2;
         foreach (var interactable in _mirrorInteractables)
         {
             interactable.SetAsFakeObject();
@@ -91,12 +111,17 @@ public class GameManager : MonoBehaviour
     
     private void OnFailure()
     {
-        Debug.Log($"Failure!");
+        AudioManager.Instance.PlayClip(AudioManager.Instance.failClip);
+        Debug.Log($"Failure! {CurrentFailedActionsCount}, _actions.Count: {_actions.Count}");
+        Destroy(_actions[0]);
+        _actions.RemoveAt(0);
+        
         CurrentFailedActionsCount++;
         if (CurrentFailedActionsCount >= MaxFailedActionsCount)
         {
             Debug.Log("Game Over");
-            //LosePopup.SetActive(true);
+            LosePopup.Set(true);
+            AudioManager.Instance.PlayEnding(AudioManager.Instance.badEnding);
         }
     }
 
@@ -128,6 +153,7 @@ public class GameManager : MonoBehaviour
         }
         
         WinPopup.Set(true);
+        AudioManager.Instance.PlayEnding(AudioManager.Instance.goodEnding);
     }
     
     public void ReturnToMenu()

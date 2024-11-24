@@ -7,15 +7,6 @@ public class DoorManager : MonoBehaviour
     
     private int _currentDoorIndex = 0;
     
-    public void OnValidate()
-    {
-        _doors.Clear();
-        foreach (var enabler in gameObject.GetComponentsInChildren<DoorObjectEnabler>())
-        {
-            _doors.Add(enabler);
-        }
-    }
-    
     public void Awake()
     {
         Reset();

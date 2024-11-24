@@ -102,5 +102,10 @@ public class PlayerController : MonoBehaviour
         {
             OnWinCollider?.Invoke();
         }
+        
+        if (other.CompareTag("DoorPass"))
+        {
+            AudioManager.Instance.PlayDoor();
+        }
     }
 }

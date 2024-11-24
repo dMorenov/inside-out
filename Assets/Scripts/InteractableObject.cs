@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum InteractionResult
 {
@@ -12,6 +13,10 @@ public class InteractableObject : MonoBehaviour, IInteractable
     public bool IsFakeObject = false;
     public bool AlreadyInteracted = false;
     
+    public bool MoveOnX = false;
+    public bool MoveOnZ = false;
+    
+    public GameObject disableObject;
     
     public InteractionResult Interact()
     {
@@ -31,21 +36,42 @@ public class InteractableObject : MonoBehaviour, IInteractable
     public void SetAsFakeObject()
     {
         IsFakeObject = true;
-
-        var rand = Random.Range(0, 150);
-        if (rand < 50)
+        
+        if (disableObject != null)
         {
-            transform.Rotate(Vector3.up, 45f);
+            disableObject.SetActive(false);
+            return;
         }
-        else if (rand < 100)
+
+        if (MoveOnX && MoveOnZ)
+        {
+            var r = Random.Range(0, 10);
+            if (r < 5)
+            {
+                MoveOnX = true;
+                MoveOnZ = false;
+            }
+            else
+            {
+                MoveOnX = false;
+                MoveOnZ = true;
+            }
+        }
+        
+        if (MoveOnX)
         {
             transform.position = new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z);
+            return;
         }
-        else
+        
+        if (MoveOnZ)
         {
-            var scaleRand = Random.Range(0.7f, 1.2f);
-            transform.localScale = new Vector3(transform.localScale.x * scaleRand, transform.localScale.y, transform.localScale.z * scaleRand);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f);
+            return;
         }
+        
+        var scaleRand = Random.Range(0.7f, 1.2f);
+        transform.localScale = new Vector3(transform.localScale.x * scaleRand, transform.localScale.y, transform.localScale.z * scaleRand);
     }
 
     public bool IsAlreadyInteracted()
