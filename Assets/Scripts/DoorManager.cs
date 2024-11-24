@@ -15,6 +15,11 @@ public class DoorManager : MonoBehaviour
             _doors.Add(enabler);
         }
     }
+    
+    public void Awake()
+    {
+        Reset();
+    }
 
     public void OpenSlot()
     {

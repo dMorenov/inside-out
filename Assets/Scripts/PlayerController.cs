@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,10 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sprite[] intCursors;
     [SerializeField] private Image cursorImage;
     
+    [SerializeField] StarterAssetsInputs inputs;
+    
     private IInteractable _currentInteractable;
     private Coroutine _co;
     
     private bool _cursorIsAnimating = false;
+
+    private int _currentZone = 0;
     
     private void Update()
     {
@@ -41,6 +46,15 @@ public class PlayerController : MonoBehaviour
                 var result = _currentInteractable.Interact();
                 OnInteractionResult?.Invoke(result);
             }
+        }
+
+        if (inputs.move != Vector2.zero)
+        {
+            AudioManager.Instance.PlaySteps(_currentZone);
+        }
+        else
+        {
+            AudioManager.Instance.StopSteps();
         }
     }
 

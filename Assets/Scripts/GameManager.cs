@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
     private void OnSuccess()
     {
         Debug.Log($"Success!");
+        AudioManager.Instance.PlaySuccess();
         DoorManager.OpenSlot();
         CurrentSuccessActionsCount++;
         if (CurrentSuccessActionsCount >= ActionsForWin)
